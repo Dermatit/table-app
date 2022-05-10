@@ -1,0 +1,21 @@
+header {
+    display: flex;
+    width: 1077px;
+    height: 52px;
+    box-sizing: border-box;
+    background: #474955;
+    padding: 0 30px;
+    .column-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        width: 100%;
+        p {
+            padding-right: 50px;
+        }
+    }
+    .column-title:first-of-type {
+        width: 50%;
+    }
+}
