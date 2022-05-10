@@ -1,5 +1,5 @@
 import './index.scss'
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,10 @@ export const Footer = () => {
     const navigate = useNavigate();
 
     const filteredData = useSelector(state => state.filteredData);
+    useEffect(() => {
+        setPagesLimit([0, 5]);
+    }, [filteredData]);
+
     const pagesNumber = Array.from({length: Math.ceil(filteredData.length/10)}, (v, k) => k+1);
 
     const [pagesLimit, setPagesLimit] = useState([0, 5]);
