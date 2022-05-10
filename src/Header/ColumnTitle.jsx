@@ -1,41 +1,41 @@
 import { ReactComponent as DownArrow } from '../Assets/DownArrow.svg';
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { useState, memo, useEffect } from 'react';
+import { useState, memo } from 'react';
 import { sortedData } from '../Redux/actions';
 
-export const ColumnTitle = memo(({elem, columnTitleClick}) => {
+export const ColumnTitle = memo(({elem, columnTitleClick, title}) => {
     const dispatch = useDispatch();
+
     const data = useSelector(state => state.filteredData, shallowEqual);
+    const localData = [...data];
+    const sortedLocalData = localData.sort((a, b) => {
+        if (a[elem].toLowerCase() < b[elem].toLowerCase()) {
+            return -1;
+        }
+        if (a[elem].toLowerCase() > b[elem].toLowerCase()) {
+            return 1;
+        }
+        return 0;
+    })
 
-    const [localData, setLocalData] = useState();
-    const [sort, setSort] = useState(true);
-
-    useEffect(() => setLocalData([...data]),[data]);
+    const [toggleSort, setToggleSort] = useState(true);
 
     const sortOrder = () => {
-        if (sort) {
-            dispatch(sortedData(localData.sort((a, b) => {
-                if (a[elem].toLowerCase() < b[elem].toLowerCase()) {
-                    return -1;
-                }
-                if (a[elem].toLowerCase() > b[elem].toLowerCase()) {
-                    return 1;
-                }
-                return 0;
-            })));
+        if (toggleSort) {
             columnTitleClick(true);
-            setSort(prev => !prev);
+            dispatch(sortedData(sortedLocalData));
+            setToggleSort(prev => !prev);
         }
         else {
             dispatch(sortedData(localData.reverse()));
-            setSort(prev => !prev);
+            setToggleSort(prev => !prev);
         }
     }
 
     return (
-        <div className='column-title' onClick={() => sortOrder()}>
-            <p>Заголовок</p>
-            <div><DownArrow/></div>
+        <div className='column-title' onClick={()=>sortOrder()}>
+            <p>{title}</p>
+            <div className={toggleSort? 'rotate' : 'rotate-none'}><DownArrow/></div>
         </div>
     );
 });

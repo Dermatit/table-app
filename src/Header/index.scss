@@ -14,6 +14,10 @@ header {
         p {
             padding-right: 50px;
         }
+        .rotate line {
+            transform: rotate(180deg);
+            transform-origin: 50% 50%;
+        }
     }
     .column-title:first-of-type {
         width: 50%;
