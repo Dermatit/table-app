@@ -13,7 +13,7 @@
         .table-cell {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             width: 100%;
             border-left: 1px solid #E3E6EC;
             box-sizing: border-box;
@@ -24,6 +24,7 @@
             }
         }
         .table-cell:first-of-type {
+            justify-content: center;
             width: 50%;
             border: none;
         }

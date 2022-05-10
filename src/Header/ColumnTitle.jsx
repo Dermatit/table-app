@@ -16,7 +16,7 @@ export const ColumnTitle = memo(({elem, columnTitleClick, title}) => {
             return 1;
         }
         return 0;
-    })
+    });
 
     const [toggleSort, setToggleSort] = useState(true);
 
@@ -30,8 +30,8 @@ export const ColumnTitle = memo(({elem, columnTitleClick, title}) => {
             dispatch(sortedData(localData.reverse()));
             setToggleSort(prev => !prev);
         }
-    }
-
+    };
+    
     return (
         <div className='column-title' onClick={()=>sortOrder()}>
             <p>{title}</p>

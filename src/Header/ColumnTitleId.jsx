@@ -32,7 +32,7 @@ export const ColumnTitleId = memo(({columnTitlesClicked, columnTitleClick}) => {
 
     return (
         <div className='column-title' onClick={()=>sortOrder()}>
-            <p>Id</p>
+            <p>ID</p>
             <div className={toggleSort? 'rotate' : 'rotate-none'}><DownArrow/></div>
         </div>
     );

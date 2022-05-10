@@ -1,9 +1,8 @@
-import { LOAD_DATA, SEARCH_FILTER, CHOSEN_PAGE, SORTED_DATA } from "./types";
+import { LOAD_DATA, SEARCH_FILTER, SORTED_DATA } from "./types";
 
 const initialState = {
     data: [],
-    filteredData: [],
-    page: [0, 10],
+    filteredData: []
 };
 
 const tableReducer = (state = initialState, action) => {
@@ -20,15 +19,6 @@ const tableReducer = (state = initialState, action) => {
                 filteredData: newData
             };
         };
-        case CHOSEN_PAGE: {
-            if (state.page[0] >= 0 && state.page[1] <= state.data.length) {
-                const page = initialState.page.map(elem => elem + action.page * 10 - 10);
-                return {
-                    ...state,
-                    page: page
-                };
-            };
-        };
         case SEARCH_FILTER: {
             const filteredData = state.data.filter(elem => 
                 Object.values(elem).map(elem => 
@@ -37,8 +27,7 @@ const tableReducer = (state = initialState, action) => {
             );
             return {
                 ...state,
-                filteredData: filteredData,
-                page: [0, 10]
+                filteredData: filteredData
             };
         };
         case SORTED_DATA: {

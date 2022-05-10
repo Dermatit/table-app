@@ -1,4 +1,4 @@
-import { LOAD_DATA, SORTED_DATA, SEARCH_FILTER, CHOSEN_PAGE } from "./types";
+import { LOAD_DATA, SORTED_DATA, SEARCH_FILTER } from "./types";
 
 export const loadData = () => {
     return async dispatch => {
@@ -8,13 +8,6 @@ export const loadData = () => {
             type: LOAD_DATA,
             data: data,
         }));
-    };
-};
-
-export const chosenPage = (page) => {
-    return {
-        type: CHOSEN_PAGE,
-        page: page
     };
 };
 
